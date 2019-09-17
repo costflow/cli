@@ -1,0 +1,37 @@
+{
+  "name": "costflow-cli",
+  "version": "0.2.4",
+  "description": "Costflow CLI",
+  "main": "index.js",
+  "bin": {
+    "costflow": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "costflow",
+    "ledger",
+    "beancount",
+    "hledger",
+    "accounting",
+    "plain text accounting",
+    "bookkeeping",
+    "double-entry bookkeeping"
+  ],
+  "author": "leplay <leqcany@gmail.com> (https://github.com/leplay)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/costflow/cli/issues"
+  },
+  "homepage": "https://github.com/costflow/cli",
+  "dependencies": {
+    "boxen": "^4.1.0",
+    "chalk": "^2.4.2",
+    "commander": "^3.0.1",
+    "costflow": "^0.2.0",
+    "dayjs": "^1.8.16",
+    "inquirer": "^7.0.0"
+  }
+}

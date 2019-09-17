@@ -1,5 +1,5 @@
 module.exports = {
-  cliVersion: 'v0.2.4',
+  cliVersion: 'v0.2.5',
   syntaxVersion: 'v0.2',
   parserVersion: 'v0.2.0',
   defaultConfig: {

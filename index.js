@@ -22,7 +22,8 @@ const prompt = function () {
   inquirer.prompt([{
     type: 'input',
     name: 'input',
-    message: 'Costflow:'
+    prefix: '💰',
+    message: chalk.red('costflow')
   }]).then(async answers => {
     const result = await costflow.parse(answers.input, userConfig)
     console.log(boxen(result.output, {
@@ -50,17 +51,8 @@ const welcome = async function () {
     console.log('Config file generated, please update it first: ', configPath)
     process.exit(1)
   }
-  console.log(boxen(`Costflow CLI ${config.cliVersion}\n-\nhttps://costflow.io`, {
-    padding: {
-      top: 1,
-      right: 5,
-      bottom: 1,
-      left: 5
-    },
-    borderStyle: 'classic',
-    borderColor: 'cyan',
-    align: 'center'
-  }))
+  console.log('')
+  console.log(`Costflow CLI ${config.cliVersion} ${chalk.blue('https://costflow.io/')}`)
   console.log('')
   prompt()
 }
@@ -72,6 +64,7 @@ program
   .option('-v, --version', 'output the version number', function () {
     console.log(`Costflow CLI ${config.cliVersion} / Syntax ${config.syntaxVersion} / Parser ${config.parserVersion}`)
     console.log(chalk.blue('https://docs.costflow.io/'))
+    console.log('')
     process.exit(0)
   })
   .on('command:*', function () {

@@ -15,8 +15,6 @@ const { initConfig, appendToLedger, parseLedgerPath } = require('./file')
 const configPath = path.join(os.homedir(), '/.costflow.json')
 var userConfig
 
-// todo: display syntax & parser version
-
 /* Promt */
 const prompt = function () {
   inquirer.prompt([{

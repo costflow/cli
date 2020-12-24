@@ -1,13 +1,13 @@
 module.exports = {
-  cliVersion: 'v0.3.0',
-  syntaxVersion: 'v0.3',
-  parserVersion: 'v0.3.0',
+  cliVersion: 'v1.1.1',
+  syntaxVersion: 'v1.0',
+  parserVersion: 'v1.1.1',
   defaultConfig: {
     mode: 'beancount',
     currency: 'CNY',
     timezone: '',
     tag: '#Costflow #CLI',
-    replacement: {
+    account: {
       eob: 'Equity:Opening-Balances'
     },
     formula: {

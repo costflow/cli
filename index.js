@@ -8,7 +8,7 @@ const chalk = require('chalk')
 
 const inquirer = require('inquirer')
 const program = require('commander')
-const costflow = require('costflow')
+const costflow = require('costflow').default;
 const config = require('./config')
 const { initConfig, appendToLedger, parseLedgerPath } = require('./file')
 

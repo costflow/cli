@@ -1,6 +1,6 @@
 {
   "name": "costflow-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Costflow CLI",
   "main": "index.js",
   "bin": {
@@ -20,7 +20,7 @@
     "bookkeeping",
     "double-entry bookkeeping"
   ],
-  "author": "leplay <leplay@costflow.io> (https://github.com/leplay)",
+  "author": "leplay <leplay@costflow.io> (https://leplay.net)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/costflow/cli/issues"

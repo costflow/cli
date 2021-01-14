@@ -1,71 +1,81 @@
 #!/usr/bin/env node
-'use strict'
+"use strict";
 
-const os = require('os')
-const path = require('path')
-const boxen = require('boxen')
-const chalk = require('chalk')
+const os = require("os");
+const path = require("path");
+const boxen = require("boxen");
+const chalk = require("chalk");
 
-const inquirer = require('inquirer')
-const program = require('commander')
-const costflow = require('costflow').default;
-const config = require('./config')
-const { initConfig, appendToLedger, parseLedgerPath } = require('./file')
+const inquirer = require("inquirer");
+const program = require("commander");
+const costflow = require("costflow").default;
+const config = require("./config");
+const { initConfig, appendToLedger, parseLedgerPath } = require("./file");
 
-const configPath = path.join(os.homedir(), '/.costflow.json')
-var userConfig
+const configPath = path.join(os.homedir(), "/.costflow.json");
+var userConfig;
 
 /* Prompt */
 const prompt = function () {
-  inquirer.prompt([{
-    type: 'input',
-    name: 'input',
-    prefix: '💰',
-    message: chalk.red('costflow')
-  }]).then(async answers => {
-    const result = await costflow.parse(answers.input, userConfig)
-    console.log(boxen(result.output, {
-      padding: {
-        top: 1,
-        right: 5,
-        bottom: 1,
-        left: 5
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "input",
+        prefix: "💰",
+        message: chalk.red("costflow"),
       },
-      borderColor: 'cyan'
-    }))
-    if (userConfig.filePath && result.sync) {
-      const realFilePath = parseLedgerPath(userConfig.filePath)
-      appendToLedger(realFilePath, result.output)
-      console.log(`✅ Saved to your ledger file: ${realFilePath}\n`)
-    }
-    prompt()
-  })
-}
+    ])
+    .then(async (answers) => {
+      const result = await costflow.parse(answers.input, userConfig);
+      console.log(
+        boxen(result.output, {
+          padding: {
+            top: 1,
+            right: 5,
+            bottom: 1,
+            left: 5,
+          },
+          borderColor: "cyan",
+        })
+      );
+      if (userConfig.filePath && result.directive !== "snap") {
+        const realFilePath = parseLedgerPath(userConfig.filePath);
+        appendToLedger(realFilePath, result.output);
+        console.log(`✅ Saved to your ledger file: ${realFilePath}\n`);
+      }
+      prompt();
+    });
+};
 
 /* Welcome */
 const welcome = async function () {
-  userConfig = await initConfig(configPath)
+  userConfig = await initConfig(configPath);
   if (userConfig.isNew) {
-    console.log('Config file generated, please update it first: ', configPath)
-    process.exit(1)
+    console.log("Config file generated, please update it first: ", configPath);
+    process.exit(1);
   }
-  console.log('')
-  console.log(`Costflow CLI ${config.cliVersion} ${chalk.blue('https://costflow.io/')}`)
-  console.log('')
-  prompt()
-}
+  console.log("");
+  console.log(
+    `Costflow CLI ${config.cliVersion} ${chalk.blue("https://costflow.io/")}`
+  );
+  console.log("");
+  prompt();
+};
 
 /* Commands */
 program
-  .name('costflow')
-  .usage(' ')
-  .option('-v, --version', 'output the version number', function () {
-    console.log(`Costflow CLI ${config.cliVersion} / Syntax ${config.syntaxVersion} / Parser ${config.parserVersion}`)
-    console.log(chalk.blue('https://www.costflow.io/docs/'))
-    console.log('')
-    process.exit(0)
+  .name("costflow")
+  .usage(" ")
+  .option("-v, --version", "output the version number", function () {
+    console.log(
+      `Costflow CLI ${config.cliVersion} / Syntax ${config.syntaxVersion} / Parser ${config.parserVersion}`
+    );
+    console.log(chalk.blue("https://www.costflow.io/docs/"));
+    console.log("");
+    process.exit(0);
   })
-  .on('command:*', function () {
-    welcome()
+  .on("command:*", function () {
+    welcome();
   })
-  .parse(process.argv)
+  .parse(process.argv);

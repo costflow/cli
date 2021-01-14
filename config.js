@@ -1,7 +1,7 @@
 module.exports = {
-  cliVersion: 'v1.1.1',
+  cliVersion: `v${require('./package').version}`,
   syntaxVersion: 'v1.0',
-  parserVersion: 'v1.1.1',
+  parserVersion: `v${require('./package').dependencies.costflow}`,
   defaultConfig: {
     mode: 'beancount',
     currency: 'CNY',

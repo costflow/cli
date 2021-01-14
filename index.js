@@ -15,7 +15,7 @@ const { initConfig, appendToLedger, parseLedgerPath } = require('./file')
 const configPath = path.join(os.homedir(), '/.costflow.json')
 var userConfig
 
-/* Promt */
+/* Prompt */
 const prompt = function () {
   inquirer.prompt([{
     type: 'input',
@@ -61,7 +61,7 @@ program
   .usage(' ')
   .option('-v, --version', 'output the version number', function () {
     console.log(`Costflow CLI ${config.cliVersion} / Syntax ${config.syntaxVersion} / Parser ${config.parserVersion}`)
-    console.log(chalk.blue('https://docs.costflow.io/'))
+    console.log(chalk.blue('https://www.costflow.io/docs/'))
     console.log('')
     process.exit(0)
   })

@@ -8,7 +8,7 @@ const chalk = require("chalk");
 
 const inquirer = require("inquirer");
 const program = require("commander");
-const costflow = require("costflow").default;
+const costflow = require("costflow");
 const config = require("./config");
 const { initConfig, appendToLedger, parseLedgerPath } = require("./file");
 
@@ -27,7 +27,7 @@ const prompt = function () {
       },
     ])
     .then(async (answers) => {
-      const result = await costflow.parse(answers.input, userConfig);
+      const result = await costflow(answers.input, userConfig);
       console.log(
         boxen(result.output, {
           padding: {
